@@ -14,7 +14,6 @@ public class AccionHandler {
                     new AccionEliminar(),
                     new AccionRegistro());
 
-
     public static Map<Integer, Accion> getStrategy(){
         Map<Integer, Accion> strategy = new HashMap<>();
         for (Accion accion : opciones){

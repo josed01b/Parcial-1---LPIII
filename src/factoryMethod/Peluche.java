@@ -1,24 +1,58 @@
 package src.factoryMethod;
 
-public class Peluche {
-    private Integer id;
+public class Peluche implements Juguete{
+    private int id;
     private String color;
     private String materialExterior;
     private String relleno;
 
-    public Peluche(Integer id, String color, String materialExterior, String relleno) {
+    public Peluche(int id, String color, String materialExterior, String relleno) {
         this.id = id;
         this.color = color;
         this.materialExterior = materialExterior;
         this.relleno = relleno;
     }
 
+    public Peluche(Peluche teddy, int id) {
+        this.id = id;
+        this.color = teddy.color;
+        this.materialExterior = teddy.materialExterior;
+        this.relleno = teddy.relleno;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int setId(int id) {
+        return this.id = id;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    public String getMaterialExterior() {
+        return materialExterior;
+    }
+
+    public String getRelleno() {
+        return relleno;
+    }
+
+    public static PelucheBuilder builder() {
+        return new PelucheBuilder();
+    }
+
     public static class PelucheBuilder {
-        private Integer id;
+        private int id;
         private String color;
         private String materialExterior;
         private String relleno;
-        public PelucheBuilder id(Integer id) {
+        public PelucheBuilder id(int id) {
 
             this.id = id;
             return this;
@@ -47,6 +81,10 @@ public class Peluche {
             return new Peluche( id,color,materialExterior,relleno);
 
         }
+
+    }
+    public Peluche clone(int id){
+        return new Peluche(this, id);
     }
 
     @Override

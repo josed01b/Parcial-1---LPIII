@@ -1,6 +1,9 @@
 package src.factoryMethod;
 
 public interface Juguete {
-    Integer getId();
+    int getId();
+
+    int setId(int id);
     String getColor();
+    Juguete clone(int id);
 }

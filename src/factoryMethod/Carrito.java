@@ -1,17 +1,47 @@
 package src.factoryMethod;
 
-public class Carrito {
+public class Carrito implements Juguete {
 
-    private Integer id;
+    private int id;
     private String color;
     private String marca;
-    private String nroPuertas;
+    private int nroPuertas;
 
-    public Carrito(Integer id, String color, String marca, String nroPuertas) {
+    public Carrito(int id, String color, String marca, int nroPuertas) {
         this.id = id;
         this.color = color;
         this.marca = marca;
         this.nroPuertas = nroPuertas;
+    }
+
+    public Carrito(Carrito car, int id) {
+        this.id = id;
+        this.color = car.color;
+        this.marca = car.marca;
+        this.nroPuertas = car.nroPuertas;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public int setId(int id) {
+        return this.id = id;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getNroPuertas() {
+        return nroPuertas;
     }
 
     public static CarritoBuilder builder() {
@@ -19,12 +49,12 @@ public class Carrito {
     }
 
     public static class CarritoBuilder {
-        private Integer id;
+        private int id;
         private String color;
         private String marca;
-        private String nroPuertas;
+        private int nroPuertas;
 
-        public CarritoBuilder id(Integer id) {
+        public CarritoBuilder id(int id) {
 
             this.id = id;
             return this;
@@ -43,13 +73,20 @@ public class Carrito {
             return this;
         }
 
-        public CarritoBuilder nroPuertas(String nroPuertas) {
+        public CarritoBuilder nroPuertas(int nroPuertas) {
             this.nroPuertas = nroPuertas;
             return this;
         }
 
+        public Carrito build() {
+            return new Carrito(id, color, marca, nroPuertas);
+        }
+
     }
 
+    public Carrito clone(int id){
+        return new Carrito(this, id);
+    }
     @Override
     public String toString() {
         return "Carrito{" +
