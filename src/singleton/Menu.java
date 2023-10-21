@@ -7,16 +7,14 @@ import src.strategy.AccionHandler;
 import java.util.*;
 
 public class Menu {
-    private static final Scanner tcl = new Scanner(System.in);
+    private static final Scanner teclado = new Scanner(System.in);
 
     private Menu(){
     }
 
     private static Menu getInstance;
-    public List<Juguete> juguetes = new ArrayList<>();
-    private final AccionHandler accionHandler = new AccionHandler();
-    private static final int opc_sal = 5;
-
+    public Set<Juguete> juguetes = new LinkedHashSet<>();
+    private static final int opc_sal = 9;
     public static Menu getInstance(){
         if (getInstance == null){
             getInstance = new Menu();
@@ -34,9 +32,13 @@ public class Menu {
                         "2-Clonar\n" +
                         "3-Eliminar\n" +
                         "4-Registrar\n" +
+                        "5-Impresión Peluches o Carritos\n" +
+                        "6-Impresión del carrito con mayor numero de puertas" +
+                        "7-" +
+                        "8-Eliminación juguetes por color" +
                         opc_sal + "-Salir\n");
-                option = tcl.nextInt();
-                tcl.nextLine();
+                option = teclado.nextInt();
+                teclado.nextLine();
                 Accion accion = strategy.get(option);
                 if (option == opc_sal) {
                     continue;
@@ -48,7 +50,7 @@ public class Menu {
                 }
             } catch (InputMismatchException ex){
                 System.out.println(" ERROR !! Solo se permite digitar numeros");
-                tcl.nextLine();
+                teclado.nextLine();
 
             }
 

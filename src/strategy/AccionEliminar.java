@@ -2,15 +2,15 @@ package src.strategy;
 import src.factoryMethod.Juguete;
 import src.singleton.Menu;
 
-import java.sql.SQLOutput;
 import java.util.*;
 public class AccionEliminar implements Accion{
-    Scanner tcl = new Scanner(System.in);
-    private int ide;
+    Scanner teclado = new Scanner(System.in);
+    private int ideliminar;
     @Override
     public void aplicar() {
+        List<Juguete> juguetes = new ArrayList<>();
             try {
-                if(getOpcion() == 3 && Menu.getInstance().juguetes.isEmpty()){
+                if( Menu.getInstance().juguetes.isEmpty()){
                     System.out.println("No existe ningun juguete a elminar");
                 } else{
                     System.out.println(" ||Lista de juguetes|| ");
@@ -20,16 +20,16 @@ public class AccionEliminar implements Accion{
                     }
 
                     System.out.println("Ingrese el Id del juguete que desea eliminar");
-                    ide = tcl.nextInt();
+                    ideliminar = teclado.nextInt();
                 }
 
             } catch (InputMismatchException ex) {
                 System.out.println("ERROR !! Solo se permite digitar numeros");
-                tcl.nextLine();
+                teclado.nextLine();
             }
 
-        if (ide >= 0 && ide < Menu.getInstance().juguetes.size()) {
-            Menu.getInstance().juguetes.remove(ide);
+        if (ideliminar >= 0 && ideliminar < Menu.getInstance().juguetes.size()) {
+            Menu.getInstance().juguetes.remove(ideliminar);
             System.out.println("Se ha eliminado el juguete");
         }else{
             System.out.println("El juguete1 no existe en la lista");

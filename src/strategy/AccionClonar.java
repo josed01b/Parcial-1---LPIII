@@ -1,18 +1,18 @@
 package src.strategy;
-import src.factoryMethod.Carrito;
 import src.factoryMethod.Juguete;
 import src.singleton.Menu;
 
 import java.util.*;
 public class AccionClonar  implements Accion{
-    private static Scanner tcl = new Scanner(System.in);
-    private int idc;
-    private int vc;
+    private static Scanner teclado = new Scanner(System.in);
+    private int idclonar;
+    private int nroveces;
 
 
     public void aplicar(){
 
-        if (getOpcion() == 2 && Menu.getInstance().juguetes.isEmpty() ){
+
+        if ( Menu.getInstance().juguetes.isEmpty() ){
             System.out.println("ATENCION !! no existen juguetes para clonar");
         } else {
             System.out.println(" ||Lista de juguetes|| ");
@@ -21,18 +21,18 @@ public class AccionClonar  implements Accion{
             }
 
             System.out.println("Ingresa el Id del juguete que deseas clonar");
-            idc = tcl.nextInt();
+            idclonar = teclado.nextInt();
 
             System.out.println("Ingrese las veces que desea clonar el juguete");
-            vc = tcl.nextInt();
+            nroveces = teclado.nextInt();
 
-            if ( idc < 0 || idc > Menu.getInstance().juguetes.size() ){
+            if ( idclonar < 0 || idclonar > Menu.getInstance().juguetes.size() ){
                 System.out.println("Este juguete no existen para clonar");
 
             }
 
-            Juguete toy = Menu.getInstance().juguetes.get(idc);
-            for (int i = 0; i < vc; i++ ){
+            Juguete toy = Menu.getInstance().juguetes.get(idclonar);
+            for (int i = 0; i < nroveces; i++ ){
                 Menu.getInstance().juguetes.add(toy.clone(Menu.getInstance().juguetes.size()));
             }
         }

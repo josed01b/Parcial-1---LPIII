@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class AccionHandler {
-
-    public AccionHandler(){}
-
     private static final List<Accion> opciones =
             List.of(new AccionCrear(),
                     new AccionClonar(),
