@@ -5,7 +5,7 @@ import src.singleton.Menu;
 import java.util.Scanner;
 
 public class CreadorPeluche implements CreadorJuguete {
-    private static Scanner tcl = new Scanner(System.in);
+    private static Scanner teclado = new Scanner(System.in);
     private int id;
     private String color, materialExterior, relleno;
 
@@ -14,13 +14,13 @@ public class CreadorPeluche implements CreadorJuguete {
         id = Menu.getInstance().juguetes.size();
 
         System.out.println("Ingrese el color del peluche");
-        color = tcl.nextLine();
+        color = teclado.nextLine();
 
         System.out.println("Ingrese el material exterior del peluche");
-        materialExterior = tcl.nextLine();
+        materialExterior = teclado.nextLine();
 
         System.out.println("Ingrese el relleno del peluche");
-        relleno = tcl.nextLine();
+        relleno = teclado.nextLine();
 
         Peluche teddy = Peluche.builder()
                 .id(id)

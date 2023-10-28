@@ -90,7 +90,7 @@ public class Carrito implements Juguete {
     @Override
     public String toString() {
         return "Carrito{" +
-                "id=" + id +
+                "id=" + (id+1) +
                 ", color='" + color + '\'' +
                 ", marca='" + marca + '\'' +
                 ", nroPuertas='" + nroPuertas + '\'' +

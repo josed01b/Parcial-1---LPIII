@@ -8,21 +8,18 @@ public class CreadorCarrito implements CreadorJuguete {
     private int id, nroPuerta;
     private String color, marca;
 
-    private boolean sw = false;
-
     @Override
     public Juguete crear() {
+        id = Menu.getInstance().juguetes.size();
 
-                id = Menu.getInstance().juguetes.size();
+        System.out.println("Ingrese el color del carro");
+        color = teclado.nextLine();
 
-                System.out.println("Ingrese el color del carro");
-                color = teclado.nextLine();
+        System.out.println("Ingrese la marca del carro");
+        marca = teclado.nextLine();
 
-                System.out.println("Ingrese la marca del carro");
-                marca = teclado.nextLine();
-
-                System.out.println("Ingrese el numero de las puertas del carro");
-                nroPuerta = teclado.nextInt();
+        System.out.println("Ingrese el numero de las puertas del carro");
+        nroPuerta = teclado.nextInt();
 
         Carrito car = Carrito.builder()
                 .id(id)
@@ -31,6 +28,7 @@ public class CreadorCarrito implements CreadorJuguete {
                 .nroPuertas(nroPuerta)
                 .build();
 
+        Menu.getInstance().juguetes.add(car);
         return new Carrito(id, color, marca, nroPuerta);
     }
 }

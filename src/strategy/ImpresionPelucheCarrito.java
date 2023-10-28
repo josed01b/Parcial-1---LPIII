@@ -7,25 +7,25 @@ import src.singleton.Menu;
 
 import java.util.*;
 
-public class ImpresionPelucheCarrito {
+public class ImpresionPelucheCarrito implements Accion{
 
     Scanner teclado = new Scanner(System.in);
     private int opcion;
 
-    public void Aplicar(){
+    public void aplicar(){
         try {
             System.out.println("¿Qué juguete desea imprimir?\n" + "1-Carrito\n" + "2-Peluche\n");
             opcion = teclado.nextInt();
             if (opcion == 1) {
                 Menu.getInstance().juguetes.stream()
                         .filter(juguete -> juguete instanceof Carrito)
-                        .sorted(Comparator.comparing(juguete -> juguete.getId(),Comparator.reverseOrder()))
+                        .sorted(Comparator.comparing(Juguete::getId,Comparator.reverseOrder()))
                         .forEach(System.out::println);
 
             } else if (opcion == 2) {
                Menu.getInstance().juguetes.stream()
                         .filter(juguete -> juguete instanceof Peluche)
-                        .sorted(Comparator.comparing(juguete -> juguete.getId(), Comparator.reverseOrder()))
+                        .sorted(Comparator.comparing(Juguete::getId, Comparator.reverseOrder()))
                         .forEach(System.out::println);
             }
 
@@ -33,5 +33,9 @@ public class ImpresionPelucheCarrito {
             System.out.println("ERROR !! Solo se permite digitar numeros");
             teclado.nextLine();
         }
+
+
     }
+    @Override
+    public int getOpcion(){return 5;}
 }

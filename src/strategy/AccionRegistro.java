@@ -11,8 +11,9 @@ public class AccionRegistro implements Accion{
             System.out.println("No hay juguetes por mostrar");
         } else {
             System.out.println(" ||Lista juguetes existententes|| ");
-            for (Juguete toy : Menu.getInstance().juguetes){
-                System.out.println( toy.toString());
+            for (Juguete juguete : Menu.getInstance().juguetes) {
+                System.out.print(juguete.toString());
+                System.out.println();
             }
         }
 

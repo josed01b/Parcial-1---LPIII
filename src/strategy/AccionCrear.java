@@ -8,7 +8,7 @@ public class AccionCrear implements Accion {
     private final CreadorCarrito creadorcarritos = new CreadorCarrito();
     private final CreadorPeluche creadorpeluches = new CreadorPeluche();
     Scanner teclado = new Scanner(System.in);
-    private int opc;
+    private int opcion;
 
     @Override
     public void aplicar() {
@@ -17,16 +17,16 @@ public class AccionCrear implements Accion {
                 System.out.println("Selecciona que juguete deseas crear\n" +
                         "1- Carrito\n" +
                         "2- Peluche\n");
-                opc = teclado.nextInt();
+                opcion = teclado.nextInt();
 
-                if ( opc <= 0 || opc >= 3){
+                if ( opcion <= 0 || opcion >= 3){
                     System.out.println("ERROR !! Opcion invalida");
                 }
-                if (opc == 1){
+                if (opcion == 1){
                     creadorcarritos.crear();
                     System.out.println(" Carrito creado !!");
 
-                }else if (opc == 2){
+                }else if (opcion == 2){
                     creadorpeluches.crear();
                     System.out.println(" Peluche creado !!");
 

@@ -11,10 +11,9 @@ public class Menu {
 
     private Menu(){
     }
-
     private static Menu getInstance;
     public Set<Juguete> juguetes = new LinkedHashSet<>();
-    private static final int opc_sal = 9;
+    private static final int opcion_salir = 9;
     public static Menu getInstance(){
         if (getInstance == null){
             getInstance = new Menu();
@@ -33,14 +32,14 @@ public class Menu {
                         "3-Eliminar\n" +
                         "4-Registrar\n" +
                         "5-Impresión Peluches o Carritos\n" +
-                        "6-Impresión del carrito con mayor numero de puertas" +
-                        "7-" +
-                        "8-Eliminación juguetes por color" +
-                        opc_sal + "-Salir\n");
+                        "6-Impresión del carrito con mayor numero de puertas\n" +
+                        "7-Convertir Set\n" +
+                        "8-Eliminación juguetes por color\n" +
+                        opcion_salir + "-Salir\n");
                 option = teclado.nextInt();
                 teclado.nextLine();
                 Accion accion = strategy.get(option);
-                if (option == opc_sal) {
+                if (option == opcion_salir) {
                     continue;
                 }
                 if (accion == null) {
@@ -55,7 +54,7 @@ public class Menu {
             }
 
 
-        } while (option != opc_sal);
+        } while (option != opcion_salir);
         System.out.println("Salida existosa");
     }
 
