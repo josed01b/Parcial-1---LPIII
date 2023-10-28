@@ -1,14 +1,11 @@
 package src.singleton;
-
 import src.factoryMethod.Juguete;
 import src.strategy.Accion;
 import src.strategy.AccionHandler;
-
 import java.util.*;
 
 public class Menu {
     private static final Scanner teclado = new Scanner(System.in);
-
     private Menu(){
     }
     private static Menu getInstance;
@@ -52,8 +49,6 @@ public class Menu {
                 teclado.nextLine();
 
             }
-
-
         } while (option != opcion_salir);
         System.out.println("Salida existosa");
     }

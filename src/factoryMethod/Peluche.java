@@ -90,7 +90,7 @@ public class Peluche implements Juguete{
     @Override
     public String toString() {
         return "Peluche{" +
-                "id=" + id + 1 +
+                "id=" + (id + 1) +
                 ", color='" + color + '\'' +
                 ", materialExterior='" + materialExterior + '\'' +
                 ", relleno='" + relleno + '\'' +

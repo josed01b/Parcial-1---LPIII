@@ -1,26 +1,28 @@
 package src.strategy;
-
 import src.factoryMethod.Carrito;
 import src.factoryMethod.Juguete;
 import src.factoryMethod.Peluche;
 import src.singleton.Menu;
-
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 public class EliminacionPorColor implements Accion{
     private static final Scanner teclado = new Scanner(System.in);
-    private int bandera = 1;
-    private int idcolor;
-    private String Eliminado;
     public void aplicar(){
+        int bandera = 1;
+        int idcolor = 0;
+
         List<Juguete> juguetes = new ArrayList<>(Menu.getInstance().juguetes);
+        Set<String> colors = new HashSet<>();
+        Map<Integer, String> color = new HashMap<>();
 
-        Map<Integer, String> color = Menu.getInstance().juguetes.stream()
-                .collect(Collectors.toMap(Juguete::getId, Juguete::getColor));
+        Menu.getInstance().juguetes
+                .forEach(juguete -> {
+                    colors.add(juguete.getColor());
+                });
 
-        color.forEach((id, Color) -> System.out.println("id : " + id + "|" + "Color : " + Color));
+        colors.forEach(coloor -> color.put(color.size(), coloor));
+        System.out.println("|| Lista Colores || ");
+        color.forEach((id, Color) -> System.out.println(" ID-> " + id + " || " + " COLOR-> " + Color));
 
         do {
             try {
@@ -30,23 +32,40 @@ public class EliminacionPorColor implements Accion{
 
             } catch (InputMismatchException ex) {
                 System.out.println("ERROR! Solo se permite ingresar numeros");
-                bandera = 1;
+                teclado.nextLine();
             }
         } while (bandera == 1);
 
-        for (int i = 0; i < Menu.getInstance().juguetes.size(); i++){
-            if (juguetes.get(i) instanceof Carrito){
-                Carrito coche = (Carrito) juguetes.get(i);
-                coche.setId(i);
-            } else {
-                Peluche muñeco = (Peluche) juguetes.get(i);
-                muñeco.setId(i);
+        String Scolor = color.get(idcolor);
 
+        if (Menu.getInstance().juguetes.isEmpty()){
+            System.out.println("No existen juguetes");
+
+        } else {
+            for(Juguete toy : juguetes){
+                if (Scolor.equals(toy.getColor())){
+                    Menu.getInstance().juguetes.remove(toy);
+                    System.out.println("¡Juguete eliminado!");
+                }
             }
-        }
-        Menu.getInstance().juguetes.addAll(new LinkedHashSet<>(juguetes));
-        }
 
+            int i = 0;
+            for (Juguete juguete : Menu.getInstance().juguetes) {
+                juguete.setId(i++);
+            }
+//            IntStream.range(0, juguetes.size())
+//                    .forEach(i -> {
+//                        Juguete juguete = juguetes.get(i);
+//                        if (juguete instanceof Carrito) {
+//                            ((Carrito) juguete).setId(i);
+//                        } else if (juguete instanceof Peluche) {
+//                            ((Peluche) juguete).setId(i);
+//                        }
+//                    });
+//
+//            Menu.getInstance().juguetes.addAll(new LinkedHashSet<>());
+        }
+        }
    public int getOpcion(){
         return 8;
    }

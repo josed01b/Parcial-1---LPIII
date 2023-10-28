@@ -1,11 +1,7 @@
 package src.strategy;
-
 import src.factoryMethod.Juguete;
 import src.singleton.Menu;
-
-import java.sql.SQLOutput;
 import java.util.stream.Collectors;
-
 public class AccionConversion implements Accion {
     public void aplicar() {
         if (Menu.getInstance().juguetes.isEmpty()) {

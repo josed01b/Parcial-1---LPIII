@@ -1,16 +1,11 @@
 package src.strategy;
-import src.factoryMethod.Carrito;
 import src.factoryMethod.Juguete;
-import src.factoryMethod.Peluche;
 import src.singleton.Menu;
 import java.util.*;
-
 public class AccionClonar  implements Accion{
     private static Scanner teclado = new Scanner(System.in);
     private int idclonar;
     private int nroveces;
-
-
     public void aplicar(){
         int bandera = 1;
         List<Juguete> juguetes = new ArrayList<>(Menu.getInstance().juguetes);
@@ -18,7 +13,7 @@ public class AccionClonar  implements Accion{
         if ( Menu.getInstance().juguetes.isEmpty() ){
             System.out.println("ATENCION !! no existen juguetes para clonar");
         } else {
-            System.out.println(" ||Lista de juguetes|| ");
+            System.out.println(" || Lista de juguetes || ");
             Menu.getInstance().juguetes.forEach(System.out::println);
 
             do {
@@ -45,24 +40,12 @@ public class AccionClonar  implements Accion{
                 Menu.getInstance().juguetes.add(toy.clone(Menu.getInstance().juguetes.size()));
             }
         }
-        System.out.println("Se ha clonado correctamente el juguete");
 
-
-        //        int i = 1;
-//        for (Juguete juguete : Menu.getInstance().juguetes){
-//            juguete.setId(i++);
-        //       }
-        for (int i = 0; i < Menu.getInstance().juguetes.size(); i++){
-            if (juguetes.get(i) instanceof Carrito) {
-                Carrito coche = (Carrito) juguetes.get(i);
-                coche.setId(i);
-            } else {
-                Peluche muñeco = (Peluche) juguetes.get(i);
-                muñeco.setId(i);
-
-            }
+        for (int i = 0; i < juguetes.size(); i++) {
+            Juguete juguete = juguetes.get(i);
+            juguete.setId(i);
         }
-        Menu.getInstance().juguetes.addAll(new LinkedHashSet<>(juguetes));
+        System.out.println("Se ha clonado correctamente el juguete ");
     }
     @Override
     public int getOpcion() {

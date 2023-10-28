@@ -4,7 +4,6 @@ import src.singleton.Menu;
 import src.factoryMethod.Juguete;
 
 public class AccionRegistro implements Accion{
-
     @Override
     public void aplicar() {
         if(Menu.getInstance().juguetes.isEmpty()){
@@ -16,9 +15,7 @@ public class AccionRegistro implements Accion{
                 System.out.println();
             }
         }
-
     }
-
     @Override
     public int getOpcion() {
         return 4;
